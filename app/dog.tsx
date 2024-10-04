@@ -77,17 +77,31 @@ const Dog: React.FC = () => {
         />
       </View>
 
-      <View style={styles.radioContainer}>
-        <RadioButton.Group onValueChange={newValue => setWeightUnit(newValue as 'pounds' | 'kilograms')} value={weightUnit}>
-          <View style={styles.radioOption}>
-            <RadioButton value="pounds" />
-            <Text style={styles.radioText} onPress={() => setWeightUnit('pounds')}>Pounds</Text>
-          </View>
-          <View style={styles.radioOption}>
-            <RadioButton value="kilograms" />
-            <Text style={styles.radioText} onPress={() => setWeightUnit('kilograms')}>Kilograms</Text>
-          </View>
-        </RadioButton.Group>
+      <View style={styles.buttonGroup}>
+        <Button
+          mode="contained"
+          style={[
+        styles.unitButton,
+        weightUnit === 'pounds' ? styles.selectedButton : styles.unselectedButton,
+          ]}
+          onPress={() => setWeightUnit('pounds')}
+        >
+          <Text style={weightUnit === 'pounds' ? styles.selectedButtonText : styles.unselectedButtonText}>
+        Pounds
+          </Text>
+        </Button>
+        <Button
+          mode="contained"
+          style={[
+        styles.unitButton,
+        weightUnit === 'kilograms' ? styles.selectedButton : styles.unselectedButton,
+          ]}
+          onPress={() => setWeightUnit('kilograms')}
+        >
+          <Text style={weightUnit === 'kilograms' ? styles.selectedButtonText : styles.unselectedButtonText}>
+        Kilograms
+          </Text>
+        </Button>
       </View>
 
       <View style={styles.buttonContainer}>

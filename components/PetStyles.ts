@@ -63,5 +63,29 @@ export default StyleSheet.create({
     color: '#fff',
     fontSize: 24,
   },
+
+  // Unit buttons
+  buttonGroup: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+    width: '100%',
+  },
+  unitButton: {
+    flex: 1,
+    marginHorizontal: 5,
+  },
+  selectedButton: {
+    backgroundColor: 'rgba(0, 134, 214, 0.95)',
+  },
+  unselectedButton: {
+    backgroundColor: '#f0f0f0',
+  },
+  selectedButtonText: {
+    color: '#fff',
+  },
+  unselectedButtonText: {
+    color: '#000',
+  },
 });
 
