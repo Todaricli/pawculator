@@ -28,8 +28,23 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack
+        screenOptions={{
+          title: 'Pawculator',
+          headerStyle: {
+            backgroundColor: 'rgba(0, 134, 214, 0.95)',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontSize: '2em',
+          },
+          headerTitleAlign: 'center',
+        }}
+      >
+        <Stack.Screen name="index" />
+        <Stack.Screen name="cat" />
+        <Stack.Screen name="dog" />
+        <Stack.Screen name="result" />
         <Stack.Screen name="+not-found" />
       </Stack>
     </ThemeProvider>
