@@ -1,50 +1,42 @@
-# Welcome to your Expo app 👋
+# pawculator
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Project Desc
+Pawculator is a mobile app designed to help pet owners calculate the proper amount of raw food to feed their cats or dogs. By selecting the pet type, entering their activity level, and providing the pet's weight (in pounds or kilograms), users will receive personalized feeding recommendations. The app will feature a sleek, user-friendly interface, and is built with JavaScript, React or React Native.
 
-## Get started
+## Run the app instruction
+The app was developed using Node.js v22.9.0 and NPM v10.8.3
+- Run `npm install` to install dependencies
+- Run `npm expo start` to run the dev server.
 
-1. Install dependencies
+## Functionality/Pages
 
-   ```bash
-   npm install
-   ```
+**1️⃣ Welcome Screen:**
 
-2. Start the app
+1. A clean and modern screen displaying the app name (Pawculator) and a brief description.
+2. Users can select between “Cat” and “Dog” options using large, visually distinct buttons or icons.
+3. This selection should determine the calculation parameters for the next steps.
+4. An call to start button after "Cat and Dog" selected.
 
-   ```bash
-    npx expo start
-   ```
+**2️⃣ Activity Level & Weight Input Screen:**
 
-In the output, you'll find options to open the app in a
+1. After pet selection, the user is prompted to select the pet's activity level from options.
+2. Each option will correspond to a different percentage of the pet's body weight used in the calculation formula.
+3. User enters the pet’s weight with max and min prompt (If input go over or under the data range in the provided URL, should let user aware of the min and max weight and ask user to enter again with dialog box)
+4. Input field should accept numbers, with the ability to toggle between pounds (lbs) and kilograms (kg).
+5. Use of a conversion feature (behind the scenes) if the user inputs the weight in either metric, allowing flexibility.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+**3️⃣ Result Display Screen:**
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+1. Display the calculated amount of raw food recommended (in grams or ounces).
+2. Offer a button for users to "Start Over".
 
-## Get a fresh project
+## Exception Handling
+1. Start button should be disabled, if pet has not selected.
+2. If missing weight, activity level or units value, then generate result button should be disabled.
+3. Dialog box prompt user of max and min weight, if user entered a weight value execced or under feasible range and clicked the generate button.
 
-When you're ready, run:
+## Acceptance criteria
+Satisfied all functionalities, page requirement, exception handling requirement and complete run app instruction stated above
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Others
+For data needed to build this app, please navigate to the URL: https://www.rawessentials.co.nz/education/feeding-amounts?gad_source=1&gclid=Cj0KCQjwjNS3BhChARIsAOxBM6pNytSx-OnYQePC2UoWHmF_rRXRxoNVUQxS3zNYycnL3C0PK7nGRooaAgOREALw_wcB
