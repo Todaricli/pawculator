@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, ScrollView } from 'react-native';
 import { Button, RadioButton } from 'react-native-paper';
 import { Link, router, useLocalSearchParams } from 'expo-router';
-import alert from '../components/Alert';
-import styles from '../components/PetStyles';
+import ActivityOption from '@/components/ActivityOption';
+import alert from '@/components/Alert';
+import styles from '@/components/PetStyles';
 
 const Dog: React.FC = () => {
   const { 
@@ -42,25 +43,33 @@ const Dog: React.FC = () => {
       <Text style={styles.title}>Pick Your Dog's Activity Level:</Text>
       
       <View style={styles.radioContainer}>
-        <RadioButton.Group onValueChange={newValue => setActivityLevel(newValue)} value={activityLevel}>
-          <View style={styles.radioOption}>
-            <RadioButton value="2" />
-            <Text style={styles.radioText} onPress={() => setActivityLevel('2')}>2% - Maintenance</Text>
-          </View>
-          <View style={styles.radioOption}>
-            <RadioButton value="3" />
-            <Text style={styles.radioText} onPress={() => setActivityLevel('3')}>3% - Active</Text>
-          </View>
-          <View style={styles.radioOption}>
-            <RadioButton value="5" />
-            <Text style={styles.radioText} onPress={() => setActivityLevel('5')}>5% - Growing Puppy</Text>
-          </View>
-          <View style={styles.radioOption}>
-            <RadioButton value="10" />
-            <Text style={styles.radioText} onPress={() => setActivityLevel('10')}>10% - Growth Spurt</Text>
-          </View>
-        </RadioButton.Group>
-      </View>
+      <RadioButton.Group onValueChange={newValue => setActivityLevel(newValue)} value={activityLevel}>
+        <ActivityOption
+          value="2"
+          label="2% - Maintenance"
+          selectedValue={activityLevel}
+          onPress={setActivityLevel}
+        />
+        <ActivityOption
+          value="3"
+          label="3% - Active"
+          selectedValue={activityLevel}
+          onPress={setActivityLevel}
+        />
+        <ActivityOption
+          value="5"
+          label="5% - Growing Puppy"
+          selectedValue={activityLevel}
+          onPress={setActivityLevel}
+        />
+        <ActivityOption
+          value="10"
+          label="10% - Growth Spurt"
+          selectedValue={activityLevel}
+          onPress={setActivityLevel}
+        />
+      </RadioButton.Group>
+    </View>
 
       <Text style={styles.title}>Enter Your Pet's Weight:</Text>
 

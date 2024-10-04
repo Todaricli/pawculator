@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, ScrollView } from 'react-native';
 import { Button, RadioButton } from 'react-native-paper';
 import { Link, router, useLocalSearchParams } from 'expo-router';
-import alert from '../components/Alert';
-import styles from '../components/PetStyles';
+import ActivityOption from '@/components/ActivityOption';
+import alert from '@/components/Alert';
+import styles from '@/components/PetStyles';
 
 const Cat: React.FC = () => {
   const { 
@@ -44,18 +45,24 @@ const Cat: React.FC = () => {
       
       <View style={styles.radioContainer}>
         <RadioButton.Group onValueChange={newValue => setActivityLevel(newValue)} value={activityLevel}>
-          <View style={styles.radioOption}>
-            <RadioButton value="3" />
-            <Text style={styles.radioText} onPress={() => setActivityLevel('3')}>3% - Maintenance</Text>
-          </View>
-          <View style={styles.radioOption}>
-            <RadioButton value="5" />
-            <Text style={styles.radioText} onPress={() => setActivityLevel('5')}>5% - Active</Text>
-          </View>
-          <View style={styles.radioOption}>
-            <RadioButton value="10" />
-            <Text style={styles.radioText} onPress={() => setActivityLevel('10')}>5-10% - Growing Kitten</Text>
-          </View>
+          <ActivityOption
+            value="3"
+            label="3% - Maintenance"
+            selectedValue={activityLevel}
+            onPress={setActivityLevel}
+          />
+          <ActivityOption
+            value="5"
+            label="5% - Active"
+            selectedValue={activityLevel}
+            onPress={setActivityLevel}
+          />
+          <ActivityOption
+            value="10"
+            label="5-10% - Growing Kitten"
+            selectedValue={activityLevel}
+            onPress={setActivityLevel}
+          />
         </RadioButton.Group>
       </View>
 

@@ -16,7 +16,7 @@ export default StyleSheet.create({
     backgroundColor: '#f0f0f0',
     padding: 20,
     borderRadius: 10,
-    marginVertical: 20,
+    marginBottom: 20,
   },
   radioOption: {
     flexDirection: 'row',
