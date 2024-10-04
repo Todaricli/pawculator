@@ -3,6 +3,10 @@ import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
 import { Link, router } from 'expo-router';
+import { green } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
+
+const dog = require('@/assets/images/dog.webp');
+const cat = require('@/assets/images/cat.webp');
 
 type ParamList = {
   Result: {
@@ -43,14 +47,14 @@ const ResultScreen: React.FC = () => {
   }
 
   return (
-    <ScrollView style={{ backgroundColor: '#fff' }} contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.subContainer}>
         <Text style={styles.title}>We Recommend Feeding your {petType === 'dog' ? 'Dog' : 'Cat'}:</Text>
         <Text style={styles.foodAmount}>{foodRecommendation()}{foodUnit}</Text>
         <Text style={styles.subTitle}>Raw Food Per Day</Text>
         
         <Image 
-          source={{ uri: `/assets/images/${petType.toLowerCase()}.webp` }} // Replace with the actual image URL
+          source={petType === 'dog' ? dog : cat}
           style={styles.image}
         />
       </View>
@@ -58,20 +62,18 @@ const ResultScreen: React.FC = () => {
       <View style={styles.buttonContainer}>
         <Button 
           mode="contained"
-          style={[styles.button, styles.backButton]} 
-          color="#d3d3d3"
+          style={[styles.button, styles.backButton]}
           onPress={handleBack}
         >
-          <span style={styles.buttonText}>Back</span>
+          <Text style={styles.buttonText}>Back</Text>
         </Button>
         <Link href='/'>
           <Button 
             mode="contained"
-            style={[styles.button, styles.nextButton]} 
-            color="rgba(0, 134, 214, 0.95)"
+            style={[styles.button, styles.nextButton]}
             onPress={handleDone}
           >
-            <span style={styles.buttonText}>Start Over</span>
+            <Text style={styles.buttonText}>Start Over</Text>
           </Button>
         </Link>
       </View>
@@ -116,6 +118,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonContainer: {
+    flex: 0.1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 30,
@@ -136,7 +139,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#fff',
-    fontSize: 24,
+    fontSize: 20,
   },
 });
 

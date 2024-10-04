@@ -39,7 +39,7 @@ const Dog: React.FC = () => {
   };
 
   return (
-    <ScrollView style={{ backgroundColor: '#fff' }} contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Pick Your Dog's Activity Level:</Text>
       
       <View style={styles.radioContainer}>
@@ -121,7 +121,7 @@ const Dog: React.FC = () => {
             color="#d3d3d3"
             onPress={handleBack}
           >
-            <span style={styles.buttonText}>Back</span>
+            <Text style={styles.buttonText}>Back</Text>
           </Button>
         </Link>
         <Button 
@@ -131,7 +131,7 @@ const Dog: React.FC = () => {
           onPress={handleNext}
           disabled={!weight?.length || weight.length === 0}
         >
-          <span style={styles.buttonText}>Next</span>
+          <Text style={styles.buttonText}>Next</Text>
         </Button>
       </View>
     </ScrollView>

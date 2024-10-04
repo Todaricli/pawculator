@@ -41,9 +41,12 @@ export default function RootLayout() {
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
-            fontSize: '2em',
+            fontSize: 24,
           },
           headerTitleAlign: 'center',
+          headerBackTitleVisible: false,
+          headerBackButtonMenuEnabled: false,
+          headerBackVisible: false,
         }}
       >
         <Stack.Screen name="index" />

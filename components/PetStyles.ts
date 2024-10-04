@@ -44,12 +44,13 @@ export default StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 30,
+    marginTop: 10,
+    marginBottom: 30,
     paddingBottom: 30,
   },
   button: {
     flex: 0.45,
-    height: 60,
+    height: 50,
     justifyContent: 'center',
     borderRadius: 10,
   },
@@ -61,7 +62,7 @@ export default StyleSheet.create({
   },
   buttonText: {
     color: '#fff',
-    fontSize: 24,
+    fontSize: 20,
   },
 
   // Unit buttons

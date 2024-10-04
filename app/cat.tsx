@@ -116,7 +116,7 @@ const Cat: React.FC = () => {
             color="#d3d3d3"
             onPress={handleBack}
           >
-            <span style={styles.buttonText}>Back</span>
+            <Text style={styles.buttonText}>Back</Text>
           </Button>
         </Link>
         <Button 
@@ -126,7 +126,7 @@ const Cat: React.FC = () => {
           onPress={handleNext}
           disabled={!weight?.length || weight.length === 0}
         >
-          <span style={styles.buttonText}>Next</span>
+          <Text style={styles.buttonText}>Next</Text>
         </Button>
       </View>
     </ScrollView>

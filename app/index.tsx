@@ -1,27 +1,34 @@
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
+
+const dog = require('@/assets/images/dog.webp');
+const cat = require('@/assets/images/cat.webp');
 
 const HomeScreen: React.FC = () => {
   return (
     <ScrollView style={{ backgroundColor: '#fff' }} contentContainerStyle={styles.container}>
       <Text style={styles.title}>Pick Your Pet</Text>
-      <Link href='/cat'>
-        <TouchableOpacity style={styles.petButton}>
+      {/* <Link href='/cat'> */}
+        <TouchableOpacity 
+          style={styles.petButton} 
+          onPress={() => router.push({ pathname: '/cat' })}
+        >
           <Image 
-            source={{ uri: '/assets/images/cat.webp' }}
+            source={cat}
             style={styles.image}
           />
         </TouchableOpacity>
-      </Link>
-      <Link href='/dog'>
-        <TouchableOpacity style={styles.petButton}>
+      {/* </Link> */}
+      {/* <Link href='/dog'> */}
+        <TouchableOpacity style={styles.petButton} 
+          onPress={() => router.push({ pathname: '/dog' })}>
           <Image 
-            source={{ uri: '/assets/images/dog.webp' }}
+            source={dog}
             style={styles.image}
           />
         </TouchableOpacity>
-      </Link>
+      {/* </Link> */}
       <Text style={styles.description}>
         Use this app to calculate how much
         {"\n"}raw food to feed your pet based on
