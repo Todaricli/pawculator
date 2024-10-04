@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Alert } from 'react-native';
+import { View, Text, TextInput, ScrollView } from 'react-native';
 import { Button, RadioButton } from 'react-native-paper';
 import { Link, router, useLocalSearchParams } from 'expo-router';
+import alert from '../components/Alert';
+import styles from '../components/PetStyles';
 
 const Cat: React.FC = () => {
   const { 
@@ -10,8 +12,12 @@ const Cat: React.FC = () => {
     weightUnit: initialWeightUnit 
   } = useLocalSearchParams();
   const [activityLevel, setActivityLevel] = useState<string>(initialActivityLevel?.toString() || '3');
-  const [weight, setWeight] = useState<string>(initialWeight?.toString());
+  const [weight, setWeight] = useState<string>(initialWeight?.toString() ?? '');
   const [weightUnit, setWeightUnit] = useState<'pounds' | 'kilograms'>(initialWeightUnit === 'pounds' ? 'pounds' : 'kilograms');
+  const weightLimits = {
+    min: weightUnit === 'pounds' ? Math.floor(1 * 2.204623) : 1,
+    max: weightUnit === 'pounds' ? Math.ceil(8 * 2.204623) : 8,
+  };
 
   const handleBack = () => {
     router.push({ pathname: '/' });
@@ -19,7 +25,13 @@ const Cat: React.FC = () => {
 
   const handleNext = () => {
     if (!weight || isNaN(Number(weight)) || parseFloat(weight) <= 0) {
-      Alert.alert('Invalid Input', 'Please enter a valid weight.');
+      alert('Invalid Input', 'Please enter a valid weight.');
+      return;
+    }
+
+    if (parseFloat(weight) < weightLimits.min || parseFloat(weight) > weightLimits.max) {
+      const unit = weightUnit === 'pounds' ? 'lbs' : 'kg';
+      alert('Invalid weight', `Weight must be between ${weightLimits.min}${unit} and ${weightLimits.max}${unit}`);
       return;
     }
 
@@ -27,7 +39,7 @@ const Cat: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={{ backgroundColor: '#fff' }} contentContainerStyle={styles.container}>
       <Text style={styles.title}>Pick Your Cat's Activity Level:</Text>
       
       <View style={styles.radioContainer}>
@@ -49,16 +61,18 @@ const Cat: React.FC = () => {
 
       <Text style={styles.title}>Enter Your Pet's Weight:</Text>
 
-      <TextInput
-        style={styles.input}
-        keyboardType="numeric"
-        value={weight}
-        onChangeText={(text) => {
-          const numericValue = text.replace(/[^0-9]/g, '');
-          setWeight(numericValue);
-        }}
-        placeholder="Enter weight"
-      />
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+          value={weight}
+          onChangeText={(text) => {
+            const numericValue = text.replace(/[^0-9]/g, '');
+            setWeight(numericValue);
+          }}
+          placeholder="Enter weight"
+        />
+      </View>
 
       <View style={styles.radioContainer}>
         <RadioButton.Group onValueChange={newValue => setWeightUnit(newValue as 'pounds' | 'kilograms')} value={weightUnit}>
@@ -89,71 +103,13 @@ const Cat: React.FC = () => {
           style={[styles.button, styles.nextButton]} 
           color="rgba(0, 134, 214, 0.95)"
           onPress={handleNext}
+          disabled={!weight?.length || weight.length === 0}
         >
           <span style={styles.buttonText}>Next</span>
         </Button>
       </View>
-    </View>
+    </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginVertical: 20,
-    textAlign: 'center',
-  },
-  radioContainer: {
-    backgroundColor: '#f0f0f0',
-    padding: 20,
-    borderRadius: 10,
-    marginVertical: 20,
-  },
-  radioOption: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  radioText: {
-    fontSize: 18,
-  },
-  input: {
-    height: 50,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    fontSize: 18,
-    textAlign: 'center',
-    marginVertical: 20,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 30,
-  },
-  button: {
-    flex: 0.45,
-    height: 60,
-    justifyContent: 'center',
-    borderRadius: 10,
-  },
-  backButton: {
-    backgroundColor: '#d3d3d3', // Light grey
-  },
-  nextButton: {
-    backgroundColor: 'rgba(0, 134, 214, 0.95)', // Blue color
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 24,
-  },
-});
 
 export default Cat;

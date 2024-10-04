@@ -1,10 +1,10 @@
 import { Link } from 'expo-router';
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 
 const HomeScreen: React.FC = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={{ backgroundColor: '#fff' }} contentContainerStyle={styles.container}>
       <Text style={styles.title}>Pick Your Pet</Text>
       <Link href='/cat'>
         <TouchableOpacity style={styles.petButton}>
@@ -23,11 +23,11 @@ const HomeScreen: React.FC = () => {
         </TouchableOpacity>
       </Link>
       <Text style={styles.description}>
-        Use this app to calculate how much 
-        ~{"\n"}raw food to feed your pet based on their
-        ~{"\n"}weight and activity level
+        Use this app to calculate how much
+        {"\n"}raw food to feed your pet based on
+        {"\n"}their weight and activity level
       </Text>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    paddingBottom: 30,
   },
   description: {
     fontSize: 18,

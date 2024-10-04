@@ -33,6 +33,11 @@ export default function RootLayout() {
           title: 'Pawculator',
           headerStyle: {
             backgroundColor: 'rgba(0, 134, 214, 0.95)',
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: -2 },
+            shadowOpacity: 0.8,
+            shadowRadius: 7,
+            elevation: 5,
           },
           headerTintColor: '#fff',
           headerTitleStyle: {

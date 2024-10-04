@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
 import { Link, router } from 'expo-router';
@@ -43,7 +43,7 @@ const ResultScreen: React.FC = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={{ backgroundColor: '#fff' }} contentContainerStyle={styles.container}>
       <View style={styles.subContainer}>
         <Text style={styles.title}>We Recommend Feeding your {petType === 'dog' ? 'Dog' : 'Cat'}:</Text>
         <Text style={styles.foodAmount}>{foodRecommendation()}{foodUnit}</Text>
@@ -71,11 +71,11 @@ const ResultScreen: React.FC = () => {
             color="rgba(0, 134, 214, 0.95)"
             onPress={handleDone}
           >
-            <span style={styles.buttonText}>Done</span>
+            <span style={styles.buttonText}>Start Over</span>
           </Button>
         </Link>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -119,12 +119,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 30,
+    paddingBottom: 30,
   },
   button: {
     flex: 0.45,
     height: 60,
     justifyContent: 'center',
     borderRadius: 10,
+    minWidth: 'fit-content',
   },
   backButton: {
     backgroundColor: '#d3d3d3', // Light grey
