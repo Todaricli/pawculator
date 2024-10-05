@@ -17,7 +17,7 @@ const Cat: React.FC = () => {
   const [weightUnit, setWeightUnit] = useState<'pounds' | 'kilograms'>(initialWeightUnit === 'pounds' ? 'pounds' : 'kilograms');
   const weightLimits = {
     min: weightUnit === 'pounds' ? Math.floor(1 * 2.204623) : 1,
-    max: weightUnit === 'pounds' ? Math.ceil(8 * 2.204623) : 8,
+    max: weightUnit === 'pounds' ? Math.ceil(Infinity * 2.204623) : Infinity,
   };
 
   const handleBack = () => {
