@@ -6,7 +6,7 @@ Pawculator is a mobile app designed to help pet owners calculate the proper amou
 ## Run the app instruction
 The app was developed using Node.js v22.9.0 and NPM v10.8.3
 - Run `npm install` to install dependencies
-- Run `npm expo start` to run the dev server.
+- Run `npm run start` to run the dev server.
 
 ## Functionality/Pages
 
